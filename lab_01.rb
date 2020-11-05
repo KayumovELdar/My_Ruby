@@ -1,4 +1,6 @@
 class Route
+
+
   attr_reader :route0
 # выводим всесь маршрут для прикрепления к поезду
   def initialize(start_station, finish_station) # начало и конец маршрута
@@ -11,22 +13,25 @@ class Route
     puts " "
   end
 
+
   def intermediate_station(name_station) # добавление станции
     @intermediate_station= @intermediate_station + [name_station]
     @route0 = @start_station + @intermediate_station + @finish_station
-      @route0.each { |train| puts train.name_station }
-      puts " "
+    @route0.each { |train| puts train.name_station }
+    puts " "
   end
+
 
   def delete_station(name_station) # удаление станции
     @intermediate_station = @intermediate_station - [name_station]
     @route0 = @start_station + @intermediate_station + @finish_station
-      @route0.each { |train| puts train.name_station }
-      puts " "
+    @route0.each { |train| puts train.name_station }
+    puts " "
   end
 
   def conclusion
-    @route.each { |x| puts x } # перечисление маршрута
+    @route0.each { |train| puts train.name_station }
+    @route0.each { |train| return train.name_station }
   end
 end
 
@@ -42,6 +47,8 @@ class Train
     @speed=0
       puts ("Я РОДИЛСЯ")
   end
+
+
   def speed_change(num) #меняем скорость на любое значение, при отрицательном значение скорость 0
     @speed+= num
       if @speed < 0
@@ -49,85 +56,89 @@ class Train
 
       end
     puts @speed
+    return @speed
   end
+
 
   def wagon_sum # повышаем число вагонов
     if @speed==0
       @wagon+=1
       puts @wagon
+        return @wagon
     else
       puts "Поезд на ходу!!! сбавьте скорость до 0!!!"
     end
   end
+
 
   def wagon_del #понижаем число вагонов
     if @speed==0
       @wagon-=1
       puts @wagon
+      return @wagon
     else
       puts "Поезд на ходу!!! сбавьте скорость до 0!!!"
     end
   end
 
 
-
-def train_route (route)
-  puts "Маршрут передан"# передаем данные о маршруте
-
-@train_r=route
-@n=0
-@train_r.each { |xxx| puts " #{xxx.name_station}"}
-puts "#{@train_r.length}"
-end
-
-def train_up #перемещение вперед НЕ УЧИТЫВАЛОСЬ ЧТО ЗНАЧЕНИЕ ПРИВЫСИТ ПОРОГ
-@n+=1
-puts "перемещение на станцию - #{@train_r[@n].name_station}"
-puts " "
-if @n>0
-  puts "предыдущая #{@train_r[@n-1].name_station}"
-end
-puts "текущая #{@train_r[@n].name_station}"
-if (@n+1)<@train_r.length
-  puts "следующая #{@train_r[@n+1].name_station}"
-end
-puts " "
-end
-def train_down #перемещение назад
-@n-=1
-puts "перемещение на станцию - #{@train_r[@n].name_station}"
-puts " "
-if @n>0
-  puts "предыдущая #{@train_r[@n-1].name_station}"
-end
-puts "текущая #{@train_r[@n].name_station}"
-if @n<@train_r.length
-  puts "следующая #{@train_r[@n+1].name_station}"
-end
-puts " "
-end
+  def train_route (route)
+    puts "Маршрут передан"# передаем данные о маршруте
+    @train_r=route
+    @n=0
+    @train_r.each { |xxx| puts " #{xxx.name_station}"}
+    puts "#{@train_r.length}"
+  end
 
 
+  def train_up #перемещение вперед НЕ УЧИТЫВАЛОСЬ ЧТО ЗНАЧЕНИЕ ПРИВЫСИТ ПОРОГ
+    @n+=1
+    puts "перемещение на станцию - #{@train_r[@n].name_station}"
+    puts " "
+    if @n>0
+      puts "предыдущая #{@train_r[@n-1].name_station}"
+    end
+      puts "текущая #{@train_r[@n].name_station}"
+    if (@n+1)<@train_r.length
+      puts "следующая #{@train_r[@n+1].name_station}"
+    end
+    puts " "
+  end
+
+  def train_down #перемещение назад
+    @n-=1
+    puts "перемещение на станцию - #{@train_r[@n].name_station}"
+    puts " "
+    if @n>0
+      puts "предыдущая #{@train_r[@n-1].name_station}"
+    end
+    puts "текущая #{@train_r[@n].name_station}"
+    if @n<@train_r.length
+      puts "следующая #{@train_r[@n+1].name_station}"
+    end
+    puts " "
+  end
 end
+
+
 class Station
   attr_reader :name_station
   def initialize(name)
     @name_station = name
     @stationTrains = []
-
   end
+
 
   def staying_train(name)
-
     @stationTrains += [name]
-
   end
+
 
   def waning_train(name)
-
-    @stationTrains = @stationTrains - [name]
-
+    @stationTrains -= [name]
   end
+
+
   def result
     @stationTrains.each { |name| puts "Номер поезда- № #{name.number}. Тип поезда - #{name.type1}  ." }
   end
