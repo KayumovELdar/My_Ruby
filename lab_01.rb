@@ -8,7 +8,6 @@ class Route
     @finish_station = [finish_station]
     @route0 = @start_station + @finish_station
     @intermediate_station = []
-    puts ("Я РОДИЛСЯ")
     @route0.each { |train| puts train.name_station }
     puts " "
   end
