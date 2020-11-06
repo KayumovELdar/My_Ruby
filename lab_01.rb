@@ -144,6 +144,8 @@ class Station
     @stationTrains.each { |name| puts "Номер поезда- № #{name.number}. Тип поезда - #{name.type1}  ." }
   end
 end
+//////
+/////
 =begin
 train111=Train.new("111","грузовой",30)
 train112=Train.new("112","пасажирский",30)
