@@ -143,6 +143,7 @@ class Station
   end
 end
 //////
+/////
 =begin
 train111=Train.new("111","грузовой",30)
 train112=Train.new("112","пасажирский",30)
